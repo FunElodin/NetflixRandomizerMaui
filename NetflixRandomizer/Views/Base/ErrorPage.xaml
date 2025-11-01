@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NetflixRandomizer.Views.ErrorPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#669F9F9F"
+             Title="ErrorPage">
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="60" VerticalOptions="Center">
+            <Image Source="ic_error.png"/>
+            <Label HorizontalTextAlignment="Center" FontSize="17" Text="Ha ocurrido un error" />
+            <Label x:Name="errorLblDebug" HorizontalTextAlignment="Center" FontSize="17" IsVisible="False"/>
+            <Button Text="Volver" FontSize="18" Clicked="Back_Clicked" />
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

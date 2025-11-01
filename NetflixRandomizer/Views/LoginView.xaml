@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+             x:Class="NetflixRandomizer.Views.LoginView"
+             xmlns:strings="clr-namespace:NetflixRandomizer.Localizations"
+             Title="LoginView">
+    <Grid>
+        <Grid RowDefinitions="300,*" BackgroundColor="Black">
+
+            <Border x:Name="background" Grid.Row="1" StrokeShape="RoundRectangle 20,20,0,0" BackgroundColor="#F6F8F6" Padding="0,10,0,0" Stroke="Transparent" Margin="-2,-32,-2,0">
+                <Grid RowDefinitions="auto,*">
+                    <Grid RowDefinitions="auto,auto,auto" Margin="30,0,30,0">
+                        <toolkit:SfTextInputLayout x:Name="user" Grid.Row="0" Hint="{x:Static strings:LoginResource.Usuario}" InputViewPadding="1" Padding="15,0,15,0">
+                            <Entry Text="{Binding User}"/>
+                        </toolkit:SfTextInputLayout>
+                        <toolkit:SfTextInputLayout x:Name="pass" Grid.Row="1" Hint="Pass" EnablePasswordVisibilityToggle="true" InputViewPadding="1" Padding="15,0,15,0">
+                            <Entry Text="{Binding Pass}"/>
+                        </toolkit:SfTextInputLayout>
+                        <toolkit:SfButton x:Name="button" Grid.Row="2" Command="{Binding LoginCommand}" Text="{x:Static strings:LoginResource.Enter}"/>
+                        <Label Grid.Row="3" Text="{Binding Error}" TextColor="{DynamicResource Alert}"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid IsVisible="{Binding IsLoading}" BackgroundColor="{DynamicResource Black}" Opacity="0.4">
+            <ActivityIndicator IsRunning="{Binding IsLoading}" Color="{DynamicResource Primary}"  HeightRequest="75" WidthRequest="75"/>
+        </Grid>
+    </Grid>
+</ContentPage>

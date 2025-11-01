@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using NetflixRandomizer.Services;
 using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace NetflixRandomizer
@@ -11,17 +12,55 @@ namespace NetflixRandomizer
             builder
                 .UseMauiApp<App>()
                 .ConfigureSyncfusionToolkit()
+                .RegisterServices()
+                .RegisterViewModels()
+                .RegisterViews()
+                .ConfigureMauiHandlers((handlers) => { AddCustomHandlers(handlers); })
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            ConfigureiOSSettings();
+            ConfigureAndroidSettings();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
-
             return builder.Build();
+        }
+
+        private static void ConfigureAndroidSettings()
+        {
+#if ANDROID
+            
+#endif
+        }
+
+        private static void ConfigureiOSSettings()
+        {
+#if IOS
+            
+#endif
+        }
+
+        public static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
+        {
+            return ServicesModule.RegisterServices(builder);
+        }
+
+        public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
+        {
+            return ViewModelsModule.RegisterViewModels(builder);
+        }
+        public static MauiAppBuilder RegisterViews(this MauiAppBuilder builder)
+        {
+            return ViewModelsModule.RegisterViews(builder);
+        }
+
+        private static void AddCustomHandlers(IMauiHandlersCollection handlers)
+        {
+            
         }
     }
 }

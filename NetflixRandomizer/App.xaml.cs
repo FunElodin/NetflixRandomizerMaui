@@ -1,15 +1,19 @@
-﻿namespace NetflixRandomizer
+﻿using NetflixRandomizer.Views;
+
+namespace NetflixRandomizer
 {
     public partial class App : Application
     {
-        public App()
+        private readonly LoginView loginView;
+        public App(LoginView login)
         {
             InitializeComponent();
+            loginView = login;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            return new Window(loginView);
         }
     }
 }

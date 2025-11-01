@@ -5,23 +5,13 @@
              x:Class="NetflixRandomizer.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Image Source="dotnet_bot.png" HeightRequest="185" Aspect="AspectFit" />
 
-            <toolkit:SfTextInputLayout Hint="Nombre"></toolkit:SfTextInputLayout>
-            
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
+            <Button Text="Error page" Clicked="ErrorClicked" HorizontalOptions="Fill" />
+            <Button Text="Popup page" Clicked="PopupClicked" HorizontalOptions="Fill" />
+            <Button Text="ActionSheet page" Clicked="ActionSheetClicked" HorizontalOptions="Fill" />
+            <Button Text="Alert page" Clicked="AlertClicked" HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 
