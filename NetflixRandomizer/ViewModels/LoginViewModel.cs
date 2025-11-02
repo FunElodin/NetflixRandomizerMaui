@@ -1,5 +1,7 @@
 ﻿
 using CommunityToolkit.Mvvm.Messaging;
+using NetflixRandomizer.Localizations;
+using NetflixRandomizer.Services;
 using NetflixRandomizer.Services.Base;
 using System.Windows.Input;
 
@@ -8,6 +10,7 @@ namespace NetflixRandomizer.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         #region Properties                
+        private ILoginService _loginService;
         public ICommand LoginCommand { get; set; }
 
 
@@ -29,7 +32,9 @@ namespace NetflixRandomizer.ViewModels
             set
             {
                 user = value;
+                ErrorLbl = string.Empty;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged("LoginEnabled");
             }
         }
 
@@ -40,15 +45,29 @@ namespace NetflixRandomizer.ViewModels
             set
             {
                 pass = value;
+                ErrorLbl = string.Empty;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged("LoginEnabled");
             }
+        }
+
+        public bool LoginEnabled
+        {
+            get 
+            { 
+                return !string.IsNullOrEmpty(pass) && !string.IsNullOrEmpty(user); 
+            }            
         }
         #endregion
 
-        public LoginViewModel(INavigationService navigationService) : base(navigationService)
+        public LoginViewModel(INavigationService navigationService, ILoginService loginService) : base(navigationService)
         {
+            _loginService = loginService;
+
             this.LoginCommand = new Command((obj) => this.LoginClicked(obj));
+            
             Task.Run(async () => { await LoginRemember(); });
+            
             //Este ya permite levantar la pantalla de error en toda la app
             WeakReferenceMessenger.Default.Register<ErrorSendItemMessage>(this, (r, m) => { OnMessageReceived(m.Value); });
         }
@@ -61,33 +80,36 @@ namespace NetflixRandomizer.ViewModels
 
         private void OnMessageReceived(string value)
         {
-            Task.Run(async () =>
-            {
-                await _navigationService.ShowErrorAsync(value);
-            });
+            this.SetError(value);
         }
 
         private async void LoginClicked(object obj)
         {
             try
-            {
+            {                
                 IsLoading = true;
-                //loggedUser = await _googleAuthService.GetCurrentUserAsync();
+                bool userValid = await _loginService.CheckUser(User, Pass);
+                if (!userValid)
+                {
+                    ErrorLbl = LoginResource.UserInvalid;
+                    IsLoading = false;
+                    return;
+                }                
 
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
-                    Application.Current.MainPage = new AppShell();                     
+                    Application.Current.MainPage = new AppShell();
 
                     var navigationParameter = new Dictionary<string, object> { { "logindata", User } };
                     // Permitir que la UI se actualice antes de navegar
                     //await Task.Yield();
-                    await _navigationService.PushAsync($"{nameof(MainPage)}", navigationParameter);                    
+                    await _navigationService.PushAsync($"{nameof(MainPage)}", navigationParameter);
 
                 });
             }
             catch (Exception ex)
             {
-                await _navigationService.ShowErrorAsync(ex.Message);                
+                await _navigationService.ShowErrorAsync(ex.Message);
             }
             finally
             {

@@ -123,6 +123,9 @@
   <data name="Pass" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="UserInvalid" xml:space="preserve">
+    <value>Usuario y/o contraseñas incorrectos</value>
+  </data>
   <data name="Usuario" xml:space="preserve">
     <value>Usuario</value>
   </data>

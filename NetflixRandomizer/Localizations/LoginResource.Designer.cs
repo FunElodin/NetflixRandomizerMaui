@@ -79,6 +79,15 @@ namespace NetflixRandomizer.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Usuario y/o contraseñas incorrectos.
+        /// </summary>
+        internal static string UserInvalid {
+            get {
+                return ResourceManager.GetString("UserInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuario.
         /// </summary>
         internal static string Usuario {

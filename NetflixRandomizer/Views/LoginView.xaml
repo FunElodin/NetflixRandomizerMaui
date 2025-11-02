@@ -3,22 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
              x:Class="NetflixRandomizer.Views.LoginView"
-             xmlns:strings="clr-namespace:NetflixRandomizer.Localizations"
+             xmlns:strings="clr-namespace:NetflixRandomizer.Localizations"             
+             Shell.NavBarIsVisible="False"
              Title="LoginView">
     <Grid>
         <Grid RowDefinitions="300,*" BackgroundColor="Black">
+            <Grid>
+                <AbsoluteLayout>
+                    <Image x:Name="Image1" Source="netflix_background.jpg" Aspect="AspectFill" WidthRequest="800" AbsoluteLayout.LayoutBounds="0,0,800,400" AbsoluteLayout.LayoutFlags="None" />
+                    <Image x:Name="Image2" Source="netflix_background.jpg" Aspect="AspectFill" WidthRequest="800" AbsoluteLayout.LayoutBounds="800,0,800,400" AbsoluteLayout.LayoutFlags="None" />
+                </AbsoluteLayout>
+                <Image Source="logonetflix.png" Aspect="AspectFit" BackgroundColor="#66000000"/>
+            </Grid>
 
-            <Border x:Name="background" Grid.Row="1" StrokeShape="RoundRectangle 20,20,0,0" BackgroundColor="#F6F8F6" Padding="0,10,0,0" Stroke="Transparent" Margin="-2,-32,-2,0">
+            <Border x:Name="background" Grid.Row="1" StrokeShape="RoundRectangle 20,20,0,0" BackgroundColor="Black" Padding="0,10,0,0" Stroke="Transparent" Margin="-2,-32,-2,0">
                 <Grid RowDefinitions="auto,*">
-                    <Grid RowDefinitions="auto,auto,auto" Margin="30,0,30,0">
+                    <Grid RowDefinitions="auto,auto,auto,auto" Margin="30,30,30,0">
                         <toolkit:SfTextInputLayout x:Name="user" Grid.Row="0" Hint="{x:Static strings:LoginResource.Usuario}" InputViewPadding="1" Padding="15,0,15,0">
                             <Entry Text="{Binding User}"/>
                         </toolkit:SfTextInputLayout>
                         <toolkit:SfTextInputLayout x:Name="pass" Grid.Row="1" Hint="Pass" EnablePasswordVisibilityToggle="true" InputViewPadding="1" Padding="15,0,15,0">
                             <Entry Text="{Binding Pass}"/>
                         </toolkit:SfTextInputLayout>
-                        <toolkit:SfButton x:Name="button" Grid.Row="2" Command="{Binding LoginCommand}" Text="{x:Static strings:LoginResource.Enter}"/>
-                        <Label Grid.Row="3" Text="{Binding Error}" TextColor="{DynamicResource Alert}"/>
+                        <toolkit:SfButton x:Name="button" Background="#db0000" HeightRequest="60" Grid.Row="2" CornerRadius="0" FontSize="16" Command="{Binding LoginCommand}" Text="{x:Static strings:LoginResource.Enter}" IsEnabled="{Binding LoginEnabled}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="Background" Value="#db0000"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Property="Background" Value="#564d4d"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </toolkit:SfButton>
+                        <Label Grid.Row="3" Text="{Binding ErrorLbl}" TextColor="{DynamicResource White}" HorizontalTextAlignment="Center" Margin="0,10,0,10"/>
                     </Grid>
                 </Grid>
             </Border>

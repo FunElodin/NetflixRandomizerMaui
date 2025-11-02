@@ -9,10 +9,11 @@ namespace NetflixRandomizer.Services
         {
             if (GlobalSettings.IsMockup)
             {                
-
+                builder.Services.AddSingleton<ILoginService, LoginServiceMockup>();
             }
             else
             {
+                builder.Services.AddSingleton<ILoginService, LoginService>();
             }
 
             builder.Services.AddSingleton<INavigationService, NavigationService>();
