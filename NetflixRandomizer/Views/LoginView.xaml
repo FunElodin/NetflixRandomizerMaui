@@ -10,7 +10,9 @@
         <Grid RowDefinitions="300,*" BackgroundColor="Black">
             <Grid>
                 <AbsoluteLayout>
-                    <Image x:Name="Image1" Source="netflix_background.jpg" Aspect="AspectFill" WidthRequest="800" AbsoluteLayout.LayoutBounds="0,0,800,400" AbsoluteLayout.LayoutFlags="None" />
+                    <Image x:Name="Image1" Source="netflix_background.jpg" Aspect="AspectFill" WidthRequest="{OnPlatform iOS=750, Android=800}" AbsoluteLayout.LayoutBounds="0,0,800,400" AbsoluteLayout.LayoutFlags="None">
+                        
+                    </Image>
                     <Image x:Name="Image2" Source="netflix_background.jpg" Aspect="AspectFill" WidthRequest="800" AbsoluteLayout.LayoutBounds="800,0,800,400" AbsoluteLayout.LayoutFlags="None" />
                 </AbsoluteLayout>
                 <Image Source="logonetflix.png" Aspect="AspectFit" BackgroundColor="#66000000"/>
