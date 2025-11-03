@@ -11,6 +11,7 @@ namespace NetflixRandomizer.Services
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<ErrorViewModel>();
             builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddTransient<FilmsViewModel>();
 
             return builder;
         }
@@ -21,6 +22,7 @@ namespace NetflixRandomizer.Services
 
             builder.Services.AddTransient<ErrorPage>();
             builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<FilmsView>();
 
             return builder;
         }

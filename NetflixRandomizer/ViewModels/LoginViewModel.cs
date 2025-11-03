@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using NetflixRandomizer.Localizations;
 using NetflixRandomizer.Services;
 using NetflixRandomizer.Services.Base;
+using NetflixRandomizer.Views;
 using System.Windows.Input;
 
 namespace NetflixRandomizer.ViewModels
@@ -70,6 +71,11 @@ namespace NetflixRandomizer.ViewModels
             
             //Este ya permite levantar la pantalla de error en toda la app
             WeakReferenceMessenger.Default.Register<ErrorSendItemMessage>(this, (r, m) => { OnMessageReceived(m.Value); });
+
+#if DEBUG
+            User = "Admin";
+            Pass = "Admin";
+#endif
         }
 
         private async Task LoginRemember()
@@ -100,10 +106,11 @@ namespace NetflixRandomizer.ViewModels
                 {
                     Application.Current.MainPage = new AppShell();
 
-                    var navigationParameter = new Dictionary<string, object> { { "logindata", User } };
-                    // Permitir que la UI se actualice antes de navegar
-                    //await Task.Yield();
-                    await _navigationService.PushAsync($"{nameof(MainPage)}", navigationParameter);
+                    //var navigationParameter = new Dictionary<string, object> { { "logindata", User } };
+                    //// Permitir que la UI se actualice antes de navegar
+                    ////await Task.Yield();
+                    //await _navigationService.PushAsync($"{nameof(MainPage)}", navigationParameter);
+                    await _navigationService.PushAsync($"{nameof(FilmsView)}");
 
                 });
             }

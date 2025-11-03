@@ -8,6 +8,6 @@ namespace NetflixRandomizer
 #else
         public const bool IsMockup = false;
 #endif
-        public static string BaseApiUri => "TODO";
+        public static string BaseApiUri => "https://streaming-availability.p.rapidapi.com";
     }
 }

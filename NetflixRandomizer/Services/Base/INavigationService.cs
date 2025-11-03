@@ -5,7 +5,7 @@ namespace NetflixRandomizer.Services.Base
 {
     public interface INavigationService
     {
-        Task PushAsync(string route, Dictionary<string, object> arguments);
+        Task PushAsync(string route, Dictionary<string, object> arguments = null);
         Task ShowErrorAsync(string error = "");
         Task ShowPopupAsync(string msg = "");
         Task<string> DisplayActionSheet(string message, params string[] options);
@@ -16,10 +16,14 @@ namespace NetflixRandomizer.Services.Base
 
     public class NavigationService : INavigationService
     {
-        public async Task PushAsync(string route, Dictionary<string, object> arguments)
+        public async Task PushAsync(string route, Dictionary<string, object> arguments = null)
         {
             await MainThread.InvokeOnMainThreadAsync(async () =>
             {
+                if (arguments == null)
+                {
+                    arguments = new Dictionary<string, object>();
+                }
                 await Shell.Current.GoToAsync(route, arguments);
             });
         }
