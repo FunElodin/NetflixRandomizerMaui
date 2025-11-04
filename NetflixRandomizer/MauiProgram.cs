@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using NetflixRandomizer.Handlers;
 using NetflixRandomizer.Services;
 using Syncfusion.Maui.Toolkit.Hosting;
 
@@ -60,7 +61,11 @@ namespace NetflixRandomizer
 
         private static void AddCustomHandlers(IMauiHandlersCollection handlers)
         {
-            
+#if ANDROID
+        handlers.AddHandler(typeof(CustomButton), typeof(Platforms.Android.CustomButtonHandler));
+#elif IOS
+        handlers.AddHandler(typeof(CustomButton), typeof(Platforms.iOS.CustomButtonHandler));
+#endif
         }
     }
 }

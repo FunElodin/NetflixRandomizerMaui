@@ -1,4 +1,5 @@
 ﻿
+
 namespace NetflixRandomizer.Models
 {
 
@@ -115,6 +116,11 @@ namespace NetflixRandomizer.Models
         public int runtime { get; set; }
         public ImageSet imageSet { get; set; }
         public StreamingOptions streamingOptions { get; set; }
+
+        public static implicit operator List<object>(Show v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class StreamingOptions

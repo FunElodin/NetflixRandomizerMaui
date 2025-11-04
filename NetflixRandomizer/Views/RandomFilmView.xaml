@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NetflixRandomizer.Views.RandomFilmView"
+             xmlns:controls="clr-namespace:NetflixRandomizer.Handlers"
+             Title="RandomFilmView"
+             BackgroundColor="LightGrey">
+    <ScrollView>
+        <VerticalStackLayout Spacing="16">
+
+            <Image Source="{Binding RandomShow.imageSet.verticalPoster.w720}" Aspect="AspectFill" HeightRequest="600"/>
+            <VerticalStackLayout Spacing="10" Margin="20,10,20,10">
+                <Label Text="{Binding RandomShow.title}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="{Binding RandomShow.releaseYear, StringFormat='Año: {0}'}" FontSize="16" TextColor="Black"/>
+                <Label Text="{Binding Genrers}" FontSize="14" TextColor="DimGrey" FontAttributes="Italic"/>
+                <Label Text="{Binding RandomShow.overview}" FontSize="16" TextColor="Black" LineBreakMode="WordWrap"/>
+            </VerticalStackLayout>
+
+
+            <Grid RowDefinitions="auto,auto" ColumnDefinitions="*,*">
+                <controls:CustomButton Grid.Column="0" Text="Ver en Streaming" Command="{Binding OpenStreamingCommand}" />
+            
+                <Switch Grid.Row="1" x:Name="switchControl" IsToggled="True" HorizontalOptions="Start" VerticalOptions="Center" />
+
+                <Button Grid.Column="1" Text="Ver en Netflix" Style="{StaticResource CustomButtonStyle}" IsEnabled="{Binding Source={x:Reference switchControl}, Path=IsToggled, Converter={StaticResource BoolInverter}}" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

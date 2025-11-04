@@ -110,7 +110,8 @@ namespace NetflixRandomizer.ViewModels
                     //// Permitir que la UI se actualice antes de navegar
                     ////await Task.Yield();
                     //await _navigationService.PushAsync($"{nameof(MainPage)}", navigationParameter);
-                    await _navigationService.PushAsync($"{nameof(FilmsView)}");
+                    await _navigationService.PushAsync($"///{nameof(FilmsView)}");
+                    //como acabo de reemplazar toda la MainPage, el Shell aún no tiene un contexto de navegación asociado, por eso necesita una ruta absoluta
 
                 });
             }
