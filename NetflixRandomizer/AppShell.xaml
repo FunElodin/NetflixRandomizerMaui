@@ -44,18 +44,19 @@
         <controls:FlyoutFooter />
     </Shell.FlyoutFooter>
 
-    <FlyoutItem Title="Películas" Icon="logonetflix.png">
+    <!--<FlyoutItem Title="Películas" Icon="logonetflix.png">
         <ShellContent Title="Películas" Style="{StaticResource DomesticShell}" ContentTemplate="{DataTemplate views:FilmsView}" Route="FilmsView"  />
     </FlyoutItem>
 
     <FlyoutItem Title="Película Aleatoria" Icon="logonetflix.png">
         <ShellContent Title="Película Aleatoria" Style="{StaticResource MonkeysShell}" ContentTemplate="{DataTemplate views:RandomFilmView}" Route="RandomFilmView"  />
-    </FlyoutItem>
+    </FlyoutItem>-->
 
 
     <TabBar>
-        <ShellContent Title="Películas" Icon="films_icon.png" ContentTemplate="{DataTemplate views:FilmsView}" Route="FilmsViewTab" />
-        <ShellContent Title="Aleatorio" Icon="random_icon.png" ContentTemplate="{DataTemplate views:RandomFilmView}" Route="RandomFilmViewTab" />
+        <ShellContent Title="Películas" Icon="logonetflix.png" ContentTemplate="{DataTemplate views:FilmsView}" Route="FilmsView" />
+        <ShellContent Title="Aleatorio" Icon="logonetflix.png" ContentTemplate="{DataTemplate views:RandomFilmView}" Route="RandomFilmView" />
+        <ShellContent Title="Foto" Icon="logonetflix.png" ContentTemplate="{DataTemplate views:CameraView}" Route="CameraView" />
     </TabBar>
 
 </Shell>
