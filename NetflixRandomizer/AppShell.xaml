@@ -57,6 +57,7 @@
         <ShellContent Title="Películas" Icon="logonetflix.png" ContentTemplate="{DataTemplate views:FilmsView}" Route="FilmsView" />
         <ShellContent Title="Aleatorio" Icon="logonetflix.png" ContentTemplate="{DataTemplate views:RandomFilmView}" Route="RandomFilmView" />
         <ShellContent Title="Foto" Icon="logonetflix.png" ContentTemplate="{DataTemplate views:CameraView}" Route="CameraView" />
+        <ShellContent Title="NFC" Icon="logonetflix.png" ContentTemplate="{DataTemplate views:NfcView}" Route="NfcView" />
     </TabBar>
 
 </Shell>
