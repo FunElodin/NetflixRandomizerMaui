@@ -1,6 +1,7 @@
 ﻿
 using CommunityToolkit.Mvvm.Messaging;
 using NetflixRandomizer.Localizations;
+using NetflixRandomizer.Models;
 using NetflixRandomizer.Services;
 using NetflixRandomizer.Services.Base;
 using NetflixRandomizer.Views;
@@ -12,6 +13,7 @@ namespace NetflixRandomizer.ViewModels
     {
         #region Properties                
         private ILoginService _loginService;
+        private ILiteDBService _userRepository;
         public ICommand LoginCommand { get; set; }
 
 
@@ -57,13 +59,14 @@ namespace NetflixRandomizer.ViewModels
             get 
             { 
                 return !string.IsNullOrEmpty(pass) && !string.IsNullOrEmpty(user); 
-            }            
+            }                    
         }
         #endregion
 
-        public LoginViewModel(INavigationService navigationService, ILoginService loginService) : base(navigationService)
+        public LoginViewModel(INavigationService navigationService, ILoginService loginService, ILiteDBService userRepository) : base(navigationService)
         {
-            _loginService = loginService;
+            _loginService = loginService;            
+            _userRepository = userRepository;
 
             this.LoginCommand = new Command((obj) => this.LoginClicked(obj));
             
@@ -81,6 +84,19 @@ namespace NetflixRandomizer.ViewModels
         private async Task LoginRemember()
         {
             await Task.Delay(100);
+            var users = await _userRepository.GetUsersAsync();
+            foreach(var user in users)
+            {
+                //Comprobamos que se ha guardado, si es asi navegamos directamente
+                if(user.Username == "Admin" && user.Pass =="Admin")
+                {
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        Application.Current.MainPage = new AppShell();
+                        await _navigationService.PushAsync($"///{nameof(FilmsView)}");
+                    });
+                }
+            }
             //Async para simular una llamada a API para ver si esta el usuario almacenado con su clave de refresco
         }
 
@@ -106,6 +122,13 @@ namespace NetflixRandomizer.ViewModels
                 {
                     Application.Current.MainPage = new AppShell();
 
+                    var user = new User
+                    {
+                        Username = User,
+                        Pass = Pass
+                    };
+
+                    await _userRepository.AddUserAsync(user);
                     //var navigationParameter = new Dictionary<string, object> { { "logindata", User } };
                     //// Permitir que la UI se actualice antes de navegar
                     ////await Task.Yield();
