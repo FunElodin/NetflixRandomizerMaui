@@ -3,6 +3,7 @@ using NetflixRandomizer.Handlers;
 using NetflixRandomizer.Services;
 using Syncfusion.Maui.Toolkit.Hosting;
 
+
 namespace NetflixRandomizer
 {
     public static class MauiProgram
@@ -12,7 +13,7 @@ namespace NetflixRandomizer
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .ConfigureSyncfusionToolkit()
+                .ConfigureSyncfusionToolkit()                
                 .RegisterServices()
                 .RegisterViewModels()
                 .RegisterViews()

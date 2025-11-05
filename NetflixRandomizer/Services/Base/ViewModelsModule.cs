@@ -25,6 +25,7 @@ namespace NetflixRandomizer.Services
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<FilmsView>();
             builder.Services.AddTransient<RandomFilmView>();
+            builder.Services.AddTransient<NfcView>();
 
             return builder;
         }

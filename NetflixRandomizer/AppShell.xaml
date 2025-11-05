@@ -51,6 +51,10 @@
     <FlyoutItem Title="Película Aleatoria" Icon="logonetflix.png">
         <ShellContent Title="Película Aleatoria" Style="{StaticResource MonkeysShell}" ContentTemplate="{DataTemplate views:RandomFilmView}" Route="RandomFilmView"  />
     </FlyoutItem>
+    
+    <FlyoutItem Title="Nfc" Icon="logonetflix.png">
+        <ShellContent Title="Nfc" Style="{StaticResource MonkeysShell}" ContentTemplate="{DataTemplate views:NfcView}" Route="NfcView"  />
+    </FlyoutItem>
 
 
     <TabBar>

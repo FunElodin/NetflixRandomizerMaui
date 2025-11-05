@@ -14,6 +14,7 @@ namespace NetflixRandomizer
             Routing.RegisterRoute(nameof(PopupPage), typeof(PopupPage));
             Routing.RegisterRoute(nameof(FilmsView), typeof(FilmsView));
             Routing.RegisterRoute(nameof(RandomFilmView), typeof(RandomFilmView));
+            Routing.RegisterRoute(nameof(NfcView), typeof(NfcView));
         }
 
         protected override void OnNavigating(ShellNavigatingEventArgs args)
