@@ -18,7 +18,7 @@ namespace NetflixRandomizer.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public CameraViewModel(INavigationService navigationService) : base(navigationService)
+        public CameraViewModel(INavigationService navigationService, ICrashlyticsService crashlyticsService) : base(navigationService, crashlyticsService)
         {
             this.PhotoCommand = new Command(async () => await this.TakePhoto());
         }

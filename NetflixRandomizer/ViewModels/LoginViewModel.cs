@@ -63,7 +63,7 @@ namespace NetflixRandomizer.ViewModels
         }
         #endregion
 
-        public LoginViewModel(INavigationService navigationService, ILoginService loginService, ILiteDBService userRepository) : base(navigationService)
+        public LoginViewModel(INavigationService navigationService, ILoginService loginService, ILiteDBService userRepository, ICrashlyticsService crashlyticsService) : base(navigationService, crashlyticsService)
         {
             _loginService = loginService;            
             _userRepository = userRepository;

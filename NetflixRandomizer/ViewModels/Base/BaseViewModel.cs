@@ -1,4 +1,5 @@
-﻿using NetflixRandomizer.Services.Base;
+﻿using NetflixRandomizer.Services;
+using NetflixRandomizer.Services.Base;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -8,9 +9,11 @@ namespace NetflixRandomizer.ViewModels
     {
 
         protected readonly INavigationService _navigationService;
-        public BaseViewModel(INavigationService navigationService)
+        private readonly ICrashlyticsService _crashlyticsService;
+        public BaseViewModel(INavigationService navigationService, ICrashlyticsService crashlyticsService)
         {
             _navigationService = navigationService;
+            _crashlyticsService = crashlyticsService;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -39,6 +42,16 @@ namespace NetflixRandomizer.ViewModels
                 error = value;
                 NotifyPropertyChanged();
             }
+        }
+
+        public void TrackError(string msg)
+        {
+            _crashlyticsService.LogCrashlytics(msg);
+        }
+
+        public void TrackError(Exception ex)
+        {
+            _crashlyticsService.LogError(ex);
         }
 
         public void SetError(string error)

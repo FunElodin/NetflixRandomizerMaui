@@ -38,7 +38,7 @@ namespace NetflixRandomizer.ViewModels
         }
 
         private readonly IFilmsService _filmsService;
-        public FilmsViewModel(INavigationService navigationService, IFilmsService filmsService) : base(navigationService)
+        public FilmsViewModel(INavigationService navigationService, IFilmsService filmsService, ICrashlyticsService crashlyticsService) : base(navigationService, crashlyticsService)
         {
             _filmsService = filmsService;
         }

@@ -4,7 +4,7 @@ namespace NetflixRandomizer.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public MainViewModel(INavigationService navigationService) : base(navigationService)
+        public MainViewModel(INavigationService navigationService, ICrashlyticsService crashlyticsService) : base(navigationService, crashlyticsService)
         {
         }
     }

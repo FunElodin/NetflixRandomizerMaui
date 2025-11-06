@@ -21,6 +21,8 @@ namespace NetflixRandomizer.Services
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddSingleton<IHttpClientService, HttpClientService>();            
             builder.Services.AddSingleton<ILiteDBService, LiteDBService>();
+            builder.Services.AddSingleton<IAnalyticsService, AnalyticsService>();
+            builder.Services.AddSingleton<ICrashlyticsService, CrashlyticsService>();
             return builder;
         }
     }

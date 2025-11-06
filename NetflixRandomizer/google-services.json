@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "874553842025",
+    "project_id": "cursonetmaui",
+    "storage_bucket": "cursonetmaui.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874553842025:android:06e671875aef486b2b05f8",
+        "android_client_info": {
+          "package_name": "com.mauicurso.netflixrandomizer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIaOn9h7K9ukNxbDhi8pK7PcQRSWPFthY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

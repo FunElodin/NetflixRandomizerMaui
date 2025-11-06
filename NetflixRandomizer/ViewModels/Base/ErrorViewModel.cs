@@ -4,7 +4,7 @@ namespace NetflixRandomizer.ViewModels
 {
     public class ErrorViewModel : BaseViewModel
     {        
-        public ErrorViewModel(INavigationService navigationService) : base(navigationService)
+        public ErrorViewModel(INavigationService navigationService, ICrashlyticsService crashlyticsService) : base(navigationService, crashlyticsService)
         {
             
         }

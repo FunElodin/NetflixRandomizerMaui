@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 using NetflixRandomizer.Handlers;
 using NetflixRandomizer.Services;
 using Syncfusion.Maui.Toolkit.Hosting;
@@ -17,11 +18,21 @@ namespace NetflixRandomizer
                 .RegisterViewModels()
                 .RegisterViews()
                 .ConfigureMauiHandlers((handlers) => { AddCustomHandlers(handlers); })
+                .ConfigureLifecycleEvents(events =>
+                {
+#if ANDROID
+                    events.AddAndroid(android => android.OnCreate((activity, bundle) =>
+                    {
+                        Firebase.FirebaseApp.InitializeApp(activity);
+                    }));
+#endif
+                })         
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                })
+                ;
 
             ConfigureiOSSettings();
             ConfigureAndroidSettings();
@@ -34,7 +45,7 @@ namespace NetflixRandomizer
         private static void ConfigureAndroidSettings()
         {
 #if ANDROID
-            
+
 #endif
         }
 
@@ -62,7 +73,7 @@ namespace NetflixRandomizer
         private static void AddCustomHandlers(IMauiHandlersCollection handlers)
         {
 #if ANDROID
-        handlers.AddHandler(typeof(CustomButton), typeof(Platforms.Android.CustomButtonHandler));
+            handlers.AddHandler(typeof(CustomButton), typeof(Platforms.Android.CustomButtonHandler));
 #elif IOS
         handlers.AddHandler(typeof(CustomButton), typeof(Platforms.iOS.CustomButtonHandler));
 #endif
